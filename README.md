@@ -1,13 +1,14 @@
-# Krafetly Full Stack (Supabase Connected)
+# Krafetly Starter Project
 
-## 📁 Structure
-- `/frontend` - React-based static frontend (Cloudflare Pages ready)
-- `/backend` - Node.js + Express API with Supabase integration (Render ready)
+## 📦 Structure
+- `/frontend` - React app (to deploy on Cloudflare Pages)
+- `/backend` - Node.js + Express API (to deploy on Render)
+- `.env.example` - Sample environment setup
 
-## 🔧 Backend Setup
-1. Create a Supabase project and table `users` with fields `id`, `name`, `email`
-2. Fill in `.env` with your `SUPABASE_URL` and `SUPABASE_KEY`
-3. Deploy backend to [Render](https://render.com) as Web Service
+## 🔧 Setup Steps
+1. Setup Supabase and copy DB credentials to `.env`
+2. Deploy frontend on Cloudflare Pages (from `frontend`)
+3. Deploy backend on Render (from `backend`)
 
-## 🔧 Frontend Setup
-Deploy `frontend` folder to [Cloudflare Pages](https://pages.cloudflare.com)
+## 🧪 API Test
+Visit `/api/hello` on your backend URL to test.
