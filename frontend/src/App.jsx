@@ -1,28 +1,24 @@
+import React, { useEffect } from 'react';
+import { supabase } from './supabase';
 
-import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Dashboard from './pages/Dashboard';
-import Funnels from './pages/Funnels';
-import Emails from './pages/Emails';
-import Courses from './pages/Courses';
-import Automations from './pages/Automations';
-import Sidebar from './components/Sidebar';
+const App = () => {
+  useEffect(() => {
+    async function loadData() {
+      const { data, error } = await supabase.from('users').select('*');
+      if (error) console.error('Fetch error:', error);
+      else console.log('Users:', data);
 
-const App = () => (
-  <BrowserRouter>
-    <div className="flex">
-      <Sidebar />
-      <div className="flex-1 p-4">
-        <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/funnels" element={<Funnels />} />
-          <Route path="/emails" element={<Emails />} />
-          <Route path="/courses" element={<Courses />} />
-          <Route path="/automations" element={<Automations />} />
-        </Routes>
-      </div>
-    </div>
-  </BrowserRouter>
-);
+      const { data: newUser, error: insertError } = await supabase.from('users').insert([
+        { name: 'Direct User', email: 'direct@example.com' }
+      ]);
+      if (insertError) console.error('Insert error:', insertError);
+      else console.log('Inserted:', newUser);
+    }
+
+    loadData();
+  }, []);
+
+  return <h1>Krafetly Supabase-Direct Test</h1>;
+};
 
 export default App;
